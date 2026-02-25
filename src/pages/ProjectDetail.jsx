@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, Github, ExternalLink, CheckCircle, Calendar, Tag } from 'lucide-react';
 import Container from '../components/layout/Container';
 import projects from '../data/projects';
+import { useLanguage } from '../context/LanguageContext';
 
 const statusColors = {
   Completed:     'bg-emerald-500/15 text-emerald-400 border-emerald-500/25',
@@ -11,6 +12,7 @@ const statusColors = {
 
 const ProjectDetail = () => {
   const { id } = useParams();
+  const { t } = useLanguage();
   const project = projects.find((p) => p.id === id);
 
   if (!project) {
@@ -29,7 +31,7 @@ const ProjectDetail = () => {
           className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors mb-10 group"
         >
           <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-          Kembali ke Projects
+          {t.projectDetail.back}
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -71,7 +73,7 @@ const ProjectDetail = () => {
             {/* Features */}
             {project.features?.length > 0 && (
               <div className="glass-card p-6">
-                <h2 className="text-white font-semibold text-lg mb-4">Fitur Utama</h2>
+                <h2 className="text-white font-semibold text-lg mb-4">{t.projectDetail.featuresTitle}</h2>
                 <ul className="space-y-3">
                   {project.features.map((feat, i) => (
                     <li key={i} className="flex items-start gap-3 text-white/60 text-sm">
@@ -90,7 +92,7 @@ const ProjectDetail = () => {
             <div className="glass-card p-6 space-y-5">
               {/* Status */}
               <div>
-                <p className="text-xs text-white/30 uppercase tracking-wider mb-2">Status</p>
+                <p className="text-xs text-white/30 uppercase tracking-wider mb-2">{t.projectDetail.statusLabel}</p>
                 <span className={`text-xs font-medium px-3 py-1 rounded-full border ${statColor}`}>
                   {project.status}
                 </span>
@@ -99,7 +101,7 @@ const ProjectDetail = () => {
               {/* Year */}
               <div>
                 <p className="text-xs text-white/30 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                  <Calendar className="h-3 w-3" /> Tahun
+                  <Calendar className="h-3 w-3" /> {t.projectDetail.yearLabel}
                 </p>
                 <p className="text-white/70 text-sm">{project.year}</p>
               </div>
@@ -107,14 +109,14 @@ const ProjectDetail = () => {
               {/* Category */}
               <div>
                 <p className="text-xs text-white/30 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                  <Tag className="h-3 w-3" /> Kategori
+                  <Tag className="h-3 w-3" /> {t.projectDetail.categoryLabel}
                 </p>
                 <p className="text-white/70 text-sm">{project.category}</p>
               </div>
 
               {/* Tech Stack */}
               <div>
-                <p className="text-xs text-white/30 uppercase tracking-wider mb-3">Tech Stack</p>
+                <p className="text-xs text-white/30 uppercase tracking-wider mb-3">{t.projectDetail.techLabel}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
@@ -130,7 +132,7 @@ const ProjectDetail = () => {
 
             {/* Links */}
             <div className="glass-card p-6 space-y-3">
-              <p className="text-xs text-white/30 uppercase tracking-wider mb-4">Links</p>
+              <p className="text-xs text-white/30 uppercase tracking-wider mb-4">{t.projectDetail.linksLabel}</p>
 
               {project.github && (
                 <a
@@ -158,14 +160,14 @@ const ProjectDetail = () => {
 
               {!project.github && !project.demo && (
                 <p className="text-white/30 text-sm text-center">
-                  Tidak ada link tersedia
+                  {t.projectDetail.noLinks}
                 </p>
               )}
             </div>
 
             {/* Navigation between projects */}
             <div className="glass-card p-5">
-              <p className="text-xs text-white/30 uppercase tracking-wider mb-4">Proyek Lainnya</p>
+              <p className="text-xs text-white/30 uppercase tracking-wider mb-4">{t.projectDetail.otherProjects}</p>
               <div className="space-y-2">
                 {projects
                   .filter((p) => p.id !== project.id)

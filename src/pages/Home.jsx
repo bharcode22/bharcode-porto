@@ -3,6 +3,7 @@ import { ArrowRight, Github, Gitlab, Instagram, Mail } from 'lucide-react';
 import Container from '../components/layout/Container';
 import heroImg from '../assets/images/hero/hero.webp';
 import projects from '../data/projects';
+import { useLanguage } from '../context/LanguageContext';
 
 const techStack = [
   'React', 'JavaScript', 'Tailwind CSS', 'Laravel',
@@ -17,6 +18,7 @@ const socials = [
 ];
 
 const Home = () => {
+  const { t } = useLanguage();
   const featured = projects.slice(0, 3);
 
   return (
@@ -28,26 +30,25 @@ const Home = () => {
             {/* Text */}
             <div className="flex-1 space-y-6 text-center md:text-left">
               <p className="text-white/40 text-sm font-medium tracking-widest uppercase">
-                Halo, saya
+                {t.home.greeting}
               </p>
               <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
                 Bharatayasa
               </h1>
               <p className="text-xl text-white/60 font-light">
-                Web Developer &amp; Orang Biasa dari Bali
+                {t.home.subtitle}
               </p>
               <p className="text-white/40 max-w-md mx-auto md:mx-0 leading-relaxed">
-                Saya membangun antarmuka web yang bersih dan fungsional.
-                Senang belajar hal baru dan menikmati proses.
+                {t.home.bio}
               </p>
 
               {/* CTAs */}
               <div className="flex flex-wrap gap-3 justify-center md:justify-start pt-2">
                 <Link to="/projects" className="glass-btn-primary">
-                  Lihat Proyek
+                  {t.home.viewProjects}
                 </Link>
                 <Link to="/contact" className="glass-btn-secondary">
-                  Hubungi Saya
+                  {t.home.contactMe}
                 </Link>
               </div>
 
@@ -91,7 +92,7 @@ const Home = () => {
       <section className="py-14 border-t border-white/5">
         <Container>
           <p className="text-center text-white/25 text-xs tracking-widest uppercase mb-6">
-            Tech yang sering saya gunakan
+            {t.home.techLabel}
           </p>
           <div className="flex flex-wrap justify-center gap-2">
             {techStack.map((tech) => (
@@ -112,15 +113,15 @@ const Home = () => {
           <div className="flex items-end justify-between mb-10">
             <div>
               <p className="text-white/40 text-xs font-medium tracking-widest uppercase mb-2">
-                Portofolio
+                {t.home.portfolioLabel}
               </p>
-              <h2 className="text-3xl font-bold text-white">Proyek Terbaru</h2>
+              <h2 className="text-3xl font-bold text-white">{t.home.featuredTitle}</h2>
             </div>
             <Link
               to="/projects"
               className="hidden sm:flex items-center gap-1.5 text-sm text-white/40 hover:text-white transition-colors group"
             >
-              Semua proyek
+              {t.home.allProjects}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </div>
@@ -169,7 +170,7 @@ const Home = () => {
 
           <div className="sm:hidden mt-6 text-center">
             <Link to="/projects" className="glass-btn-secondary text-sm">
-              Semua Proyek
+              {t.home.allProjectsMobile}
             </Link>
           </div>
         </Container>
@@ -180,13 +181,13 @@ const Home = () => {
         <Container>
           <div className="glass-card p-10 md:p-16 text-center max-w-2xl mx-auto">
             <h2 className="text-3xl font-bold text-white mb-4">
-              Ada proyek yang ingin dikerjakan?
+              {t.home.ctaTitle}
             </h2>
             <p className="text-white/50 mb-8">
-              Saya terbuka untuk kolaborasi, freelance, maupun diskusi santai.
+              {t.home.ctaDesc}
             </p>
             <Link to="/contact" className="glass-btn-primary">
-              Hubungi Saya
+              {t.home.contactMe}
             </Link>
           </div>
         </Container>

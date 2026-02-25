@@ -1,27 +1,7 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Github, Gitlab, Instagram, Send } from 'lucide-react';
 import Container from '../components/layout/Container';
-
-const contactInfo = [
-  {
-    icon: Mail,
-    label: 'Email',
-    value: 'bharatayasa40@gmail.com',
-    href: 'mailto:bharatayasa40@gmail.com',
-  },
-  {
-    icon: Phone,
-    label: 'WhatsApp',
-    value: '+62 819-9993-4616',
-    href: 'https://wa.me/6281999934616',
-  },
-  {
-    icon: MapPin,
-    label: 'Lokasi',
-    value: 'Kintamani, Bali, Indonesia',
-    href: null,
-  },
-];
+import { useLanguage } from '../context/LanguageContext';
 
 const socials = [
   { icon: Github,    href: 'https://github.com/bharcode22',        label: 'GitHub',    username: '@bharcode22' },
@@ -30,8 +10,15 @@ const socials = [
 ];
 
 const Contact = () => {
+  const { t } = useLanguage();
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [sent, setSent] = useState(false);
+
+  const contactInfo = [
+    { icon: Mail,    label: 'Email',           value: 'bharatayasa40@gmail.com', href: 'mailto:bharatayasa40@gmail.com' },
+    { icon: Phone,   label: 'WhatsApp',        value: '+62 819-9993-4616',       href: 'https://wa.me/6281999934616' },
+    { icon: MapPin,  label: t.contact.locationLabel, value: 'Kintamani, Bali, Indonesia', href: null },
+  ];
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -39,9 +26,8 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Kirim via mailto sebagai fallback sederhana
-    const subject = encodeURIComponent(`Pesan dari ${form.name}`);
-    const body = encodeURIComponent(`Nama: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
+    const subject = encodeURIComponent(t.contact.mailSubject(form.name));
+    const body = encodeURIComponent(t.contact.mailBody(form.name, form.email, form.message));
     window.open(`mailto:bharatayasa40@gmail.com?subject=${subject}&body=${body}`);
     setSent(true);
     setForm({ name: '', email: '', message: '' });
@@ -57,14 +43,13 @@ const Contact = () => {
         {/* Header */}
         <div className="mb-12">
           <p className="text-white/40 text-sm font-medium tracking-widest uppercase mb-3">
-            Kontak
+            {t.contact.label}
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Hubungi Saya
+            {t.contact.title}
           </h1>
           <p className="text-white/50 max-w-lg">
-            Ada pertanyaan, ide kolaborasi, atau sekadar ingin ngobrol? Jangan
-            ragu untuk menghubungi saya.
+            {t.contact.desc}
           </p>
         </div>
 
@@ -75,7 +60,7 @@ const Contact = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
                   <label className="text-white/40 text-xs font-medium tracking-wide uppercase">
-                    Nama
+                    {t.contact.nameLabel}
                   </label>
                   <input
                     type="text"
@@ -83,13 +68,13 @@ const Contact = () => {
                     value={form.name}
                     onChange={handleChange}
                     required
-                    placeholder="Nama kamu"
+                    placeholder={t.contact.namePlaceholder}
                     className={inputClass}
                   />
                 </div>
                 <div className="space-y-1.5">
                   <label className="text-white/40 text-xs font-medium tracking-wide uppercase">
-                    Email
+                    {t.contact.emailLabel}
                   </label>
                   <input
                     type="email"
@@ -97,7 +82,7 @@ const Contact = () => {
                     value={form.email}
                     onChange={handleChange}
                     required
-                    placeholder="email@kamu.com"
+                    placeholder={t.contact.emailPlaceholder}
                     className={inputClass}
                   />
                 </div>
@@ -105,7 +90,7 @@ const Contact = () => {
 
               <div className="space-y-1.5">
                 <label className="text-white/40 text-xs font-medium tracking-wide uppercase">
-                  Pesan
+                  {t.contact.messageLabel}
                 </label>
                 <textarea
                   name="message"
@@ -113,7 +98,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={6}
-                  placeholder="Tulis pesanmu di sini..."
+                  placeholder={t.contact.messagePlaceholder}
                   className={inputClass}
                 />
               </div>
@@ -123,12 +108,12 @@ const Contact = () => {
                 className="glass-btn-primary flex items-center gap-2 w-full justify-center"
               >
                 <Send className="h-4 w-4" />
-                Kirim Pesan
+                {t.contact.sendBtn}
               </button>
 
               {sent && (
                 <p className="text-emerald-400 text-sm text-center">
-                  Terima kasih! Email kamu sedang dibuka.
+                  {t.contact.sentMsg}
                 </p>
               )}
             </form>
@@ -138,7 +123,7 @@ const Contact = () => {
           <div className="lg:col-span-2 space-y-5">
             {/* Contact Info */}
             <div className="glass-card p-6 space-y-5">
-              <h3 className="text-white font-semibold">Informasi Kontak</h3>
+              <h3 className="text-white font-semibold">{t.contact.contactInfoTitle}</h3>
               {contactInfo.map(({ icon: Icon, label, value, href }) => (
                 <div key={label} className="flex items-start gap-3">
                   <div className="p-2 rounded-lg bg-white/6 border border-white/8 shrink-0">
@@ -165,7 +150,7 @@ const Contact = () => {
 
             {/* Social Media */}
             <div className="glass-card p-6 space-y-4">
-              <h3 className="text-white font-semibold">Media Sosial</h3>
+              <h3 className="text-white font-semibold">{t.contact.socialTitle}</h3>
               {socials.map(({ icon: Icon, href, label, username }) => (
                 <a
                   key={label}
@@ -194,8 +179,9 @@ const Contact = () => {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
               </span>
               <p className="text-white/60 text-sm">
-                Saat ini <span className="text-emerald-400 font-medium">tersedia</span> untuk
-                proyek baru
+                {t.contact.availableText}{' '}
+                <span className="text-emerald-400 font-medium">{t.contact.availableHighlight}</span>{' '}
+                {t.contact.availableSuffix}
               </p>
             </div>
           </div>

@@ -3,9 +3,11 @@ import { MapPin, ArrowRight } from 'lucide-react';
 import Container from '../components/layout/Container';
 import aboutImg from '../assets/images/logo/about_image.webp';
 import skills from '../data/skills';
-import timeline from '../data/timeline';
+import { useLanguage } from '../context/LanguageContext';
 
 const About = () => {
+  const { t } = useLanguage();
+
   return (
     <div>
       {/* ─── Hero ─── */}
@@ -27,34 +29,30 @@ const About = () => {
             <div className="space-y-5 text-center md:text-left">
               <div>
                 <p className="text-white/40 text-sm font-medium tracking-widest uppercase mb-3">
-                  Tentang Saya
+                  {t.about.label}
                 </p>
                 <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
                   Bharatayasa
                 </h1>
                 <div className="flex items-center gap-1.5 text-white/40 text-sm justify-center md:justify-start">
                   <MapPin className="h-4 w-4" />
-                  <span>Kintamani, Bali, Indonesia</span>
+                  <span>{t.about.location}</span>
                 </div>
               </div>
 
               <p className="text-white/55 leading-relaxed max-w-lg mx-auto md:mx-0">
-                Orang biasa yang menjalankan hidup dengan biasa saja. Saya seorang
-                web developer yang menikmati proses membangun antarmuka yang bersih,
-                fungsional, dan enak dipakai.
+                {t.about.bio1}
               </p>
               <p className="text-white/40 leading-relaxed max-w-lg mx-auto md:mx-0">
-                Di luar koding, saya menikmati suasana alam Bali dan hal-hal sederhana.
-                Percaya bahwa konsistensi kecil setiap hari lebih berharga dari
-                ledakan semangat yang sesaat.
+                {t.about.bio2}
               </p>
 
               <div className="flex flex-wrap gap-3 justify-center md:justify-start pt-2">
                 <Link to="/projects" className="glass-btn-primary">
-                  Lihat Proyek
+                  {t.about.viewProjects}
                 </Link>
                 <Link to="/contact" className="glass-btn-secondary">
-                  Hubungi Saya
+                  {t.about.contactMe}
                 </Link>
               </div>
             </div>
@@ -67,7 +65,7 @@ const About = () => {
         <Container>
           <div className="mb-10">
             <p className="text-white/40 text-xs font-medium tracking-widest uppercase mb-2">
-              Kemampuan
+              {t.about.skillsLabel}
             </p>
             <h2 className="text-3xl font-bold text-white">Tech Stack</h2>
           </div>
@@ -97,17 +95,17 @@ const About = () => {
         <Container>
           <div className="mb-10">
             <p className="text-white/40 text-xs font-medium tracking-widest uppercase mb-2">
-              Perjalanan
+              {t.about.journeyLabel}
             </p>
             <h2 className="text-3xl font-bold text-white">Timeline</h2>
           </div>
 
           <div className="max-w-2xl space-y-4">
-            {timeline.map((item, i) => (
+            {t.timeline.map((item, i) => (
               <div key={i} className="glass-card p-6 flex gap-5">
                 <div className="shrink-0 flex flex-col items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full bg-white/40 mt-1" />
-                  {i < timeline.length - 1 && (
+                  {i < t.timeline.length - 1 && (
                     <div className="w-px flex-1 bg-white/8" />
                   )}
                 </div>
@@ -129,14 +127,14 @@ const About = () => {
         <Container>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6 glass-card p-8">
             <div>
-              <h3 className="text-white font-bold text-xl mb-1">Tertarik untuk berkolaborasi?</h3>
-              <p className="text-white/45 text-sm">Saya selalu terbuka untuk diskusi dan proyek baru.</p>
+              <h3 className="text-white font-bold text-xl mb-1">{t.about.ctaTitle}</h3>
+              <p className="text-white/45 text-sm">{t.about.ctaDesc}</p>
             </div>
             <Link
               to="/contact"
               className="glass-btn-primary shrink-0 flex items-center gap-2"
             >
-              Hubungi Saya
+              {t.about.contactBtn}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
