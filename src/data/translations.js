@@ -4,7 +4,7 @@ const translations = {
       home: 'Home',
       projects: 'Projects',
       contact: 'Contact',
-      about: 'About',
+      journey: 'Journey',
     },
     home: {
       greeting: 'Halo, saya',
@@ -92,7 +92,7 @@ const translations = {
       home: 'Home',
       projects: 'Projects',
       contact: 'Contact',
-      about: 'About',
+      journey: 'Journey',
     },
     home: {
       greeting: "Hi, I'm",

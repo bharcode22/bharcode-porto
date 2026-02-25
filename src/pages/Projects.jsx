@@ -25,9 +25,9 @@ const ProjectCard = ({ project, detail }) => {
     <div className="glass-card flex flex-col h-full overflow-hidden group">
       {/* Thumbnail */}
       <div className="relative h-44 overflow-hidden rounded-t-2xl">
-        {project.image ? (
+        {project.image?.length > 0 ? (
           <img
-            src={project.image}
+            src={project.image[0]}
             alt={project.title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
@@ -87,17 +87,19 @@ const ProjectCard = ({ project, detail }) => {
         {/* Actions */}
         <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/8">
           <div className="flex gap-3">
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/40 hover:text-white transition-colors"
-                title="GitHub"
-              >
-                <Github className="h-4 w-4" />
-              </a>
-            )}
+            {project.github &&
+              Object.entries(project.github).map(([key, url]) => (
+                <a
+                  key={key}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/40 hover:text-white transition-colors"
+                  title={key === 'repo' ? 'GitHub' : `GitHub ${key.charAt(0).toUpperCase() + key.slice(1)}`}
+                >
+                  <Github className="h-4 w-4" />
+                </a>
+              ))}
             {project.demo && (
               <a
                 href={project.demo}

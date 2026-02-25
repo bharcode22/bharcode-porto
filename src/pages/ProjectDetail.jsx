@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, Github, ExternalLink, CheckCircle, Calendar, Tag } from 'lucide-react';
 import Container from '../components/layout/Container';
@@ -22,6 +22,9 @@ const ProjectDetail = () => {
   const statColor =
     statusColors[project.status] ?? 'bg-white/10 text-white/60 border-white/15';
 
+  const images = project.image ?? [];
+  const [activeImg, setActiveImg] = useState(0);
+
   return (
     <section className="py-20">
       <Container>
@@ -37,17 +40,43 @@ const ProjectDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* ── Main Content ── */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Hero Image */}
-            <div className="glass-card overflow-hidden p-0 rounded-2xl h-64 md:h-80">
-              {project.image ? (
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                />
+            {/* Image Gallery */}
+            <div className="glass-card overflow-hidden p-0 rounded-2xl">
+              {images.length > 0 ? (
+                <>
+                  <div className="h-64 md:h-80 overflow-hidden">
+                    <img
+                      key={activeImg}
+                      src={images[activeImg]}
+                      alt={`${project.title} ${activeImg + 1}`}
+                      className="w-full h-full object-cover transition-opacity duration-300"
+                    />
+                  </div>
+                  {images.length > 1 && (
+                    <div className="flex gap-2 p-3 overflow-x-auto bg-white/3">
+                      {images.map((img, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setActiveImg(i)}
+                          className={`shrink-0 w-20 h-14 rounded-lg overflow-hidden border-2 transition-all ${
+                            i === activeImg
+                              ? 'border-white/50'
+                              : 'border-transparent opacity-50 hover:opacity-80'
+                          }`}
+                        >
+                          <img
+                            src={img}
+                            alt={`Thumbnail ${i + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </>
               ) : (
                 <div
-                  className="w-full h-full flex items-center justify-center"
+                  className="h-64 md:h-80 flex items-center justify-center"
                   style={{
                     background:
                       'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
@@ -134,17 +163,21 @@ const ProjectDetail = () => {
             <div className="glass-card p-6 space-y-3">
               <p className="text-xs text-white/30 uppercase tracking-wider mb-4">{t.projectDetail.linksLabel}</p>
 
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="glass-btn-secondary flex items-center justify-center gap-2 w-full"
-                >
-                  <Github className="h-4 w-4" />
-                  Source Code
-                </a>
-              )}
+              {project.github &&
+                Object.entries(project.github).map(([key, url]) => (
+                  <a
+                    key={key}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="glass-btn-secondary flex items-center justify-center gap-2 w-full"
+                  >
+                    <Github className="h-4 w-4" />
+                    {key === 'repo'
+                      ? 'Source Code'
+                      : `${key.charAt(0).toUpperCase() + key.slice(1)} Repo`}
+                  </a>
+                ))}
 
               {project.demo && (
                 <a

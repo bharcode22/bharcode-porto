@@ -154,8 +154,8 @@ const Home = () => {
                     background: 'linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%)',
                   }}
                 >
-                  {project.image ? (
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover rounded-xl" />
+                  {project.image?.length > 0 ? (
+                    <img src={project.image[0]} alt={project.title} className="w-full h-full object-cover rounded-xl" />
                   ) : (
                     <span className="text-4xl font-bold text-white/8 select-none">
                       {project.title.charAt(0)}
