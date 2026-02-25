@@ -8,8 +8,8 @@ const translations = {
     },
     home: {
       greeting: 'Halo, saya',
-      subtitle: 'Web Developer & Orang Biasa dari Bali',
-      bio: 'Saya membangun antarmuka web yang bersih dan fungsional. Senang belajar hal baru dan menikmati proses.',
+      subtitle: 'Software Engineer',
+      bio: 'Saya adalah Software Engineer dengan fokus pada pengembangan backend. Berpengalaman dalam membangun API, mengelola database, dan merancang sistem yang skalabel serta efisien. Saya senang mempelajari teknologi baru dan menikmati proses membangun solusi yang andal dan berkelanjutan.',
       techLabel: 'Tech yang sering saya gunakan',
       viewProjects: 'Lihat Proyek',
       contactMe: 'Hubungi Saya',
@@ -96,8 +96,8 @@ const translations = {
     },
     home: {
       greeting: "Hi, I'm",
-      subtitle: 'Web Developer & Regular Person from Bali',
-      bio: 'I build clean and functional web interfaces. I enjoy learning new things and embracing the process.',
+      subtitle: 'Software Engineer',
+      bio: 'Im a software engineer with a focus on backend development. I have experience building APIs, managing databases, and designing scalable and efficient systems. I enjoy learning new technologies and the process of building reliable and sustainable solutions.',
       techLabel: 'Tech I frequently use',
       viewProjects: 'View Projects',
       contactMe: 'Contact Me',

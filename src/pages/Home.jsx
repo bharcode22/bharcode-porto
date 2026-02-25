@@ -4,18 +4,32 @@ import Container from '../components/layout/Container';
 import heroImg from '../assets/images/hero/hero.JPG';
 import projects from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
+import techStack from '../data/techStack';
+import socials from '../data/socials';
+import { useEffect, useState } from "react";
 
-const techStack = [
-  'React', 'JavaScript', 'Tailwind CSS', 'Laravel',
-  'Node.js', 'MySQL', 'Git', 'Vite',
-];
+function TypingText({ text, speed = 40 }) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [index, setIndex] = useState(0);
 
-const socials = [
-  { icon: Github,    href: 'https://github.com/bharcode22',          label: 'GitHub' },
-  { icon: Gitlab,    href: 'https://gitlab.com/bharatayasa40',        label: 'GitLab' },
-  { icon: Instagram, href: 'https://www.instagram.com/bharatayasa',   label: 'Instagram' },
-  { icon: Mail,      href: 'mailto:bharatayasa40@gmail.com',          label: 'Email' },
-];
+  useEffect(() => {
+    setDisplayedText("");
+    setIndex(0);
+  }, [text]);
+
+  useEffect(() => {
+    if (index < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText((prev) => prev + text[index]);
+        setIndex(index + 1);
+      }, speed);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [index, text, speed]);
+
+  return <>{displayedText}</>;
+}
 
 const Home = () => {
   const { t } = useLanguage();
@@ -33,13 +47,13 @@ const Home = () => {
                 {t.home.greeting}
               </p>
               <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
-                Bharatayasa
+                Bhar
               </h1>
               <p className="text-xl text-white/60 font-light">
                 {t.home.subtitle}
               </p>
-              <p className="text-white/40 max-w-md mx-auto md:mx-0 leading-relaxed">
-                {t.home.bio}
+              <p className="font-mono text-white/40 max-w-md mx-auto md:mx-0 leading-relaxed text-justify">
+                <TypingText text={t.home.bio} speed={10} />
               </p>
 
               {/* CTAs */}
