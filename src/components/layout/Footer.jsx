@@ -10,7 +10,6 @@ import {
   Phone
 } from 'lucide-react';
 import Container from './Container.jsx';
-import logo from '../../assets/images/logo/dudowan logo.webp';
 
 const Footer = () => {
   return (

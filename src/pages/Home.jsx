@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Github, Gitlab, Instagram, Mail } from 'lucide-react';
 import Container from '../components/layout/Container';
-import heroImg from '../assets/images/hero/hero.webp';
+import heroImg from '../assets/images/hero/hero.JPG';
 import projects from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
 

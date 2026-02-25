@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MapPin, ArrowRight } from 'lucide-react';
 import Container from '../components/layout/Container';
-import aboutImg from '../assets/images/logo/about_image.webp';
+import aboutImg from '../assets/images/hero/backside.jpg';
 import skills from '../data/skills';
 import { useLanguage } from '../context/LanguageContext';
 
