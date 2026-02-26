@@ -32,7 +32,7 @@ function TypingText({ text, speed = 40 }) {
 }
 
 const Home = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const featured = projects.slice(0, 3);
 
   return (
@@ -166,7 +166,7 @@ const Home = () => {
                 <h3 className="text-white font-semibold group-hover:text-white/90 transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-white/45 text-sm line-clamp-2">{project.shortDesc}</p>
+                <p className="text-white/45 text-sm line-clamp-2">{project.shortDesc[lang]}</p>
 
                 <div className="flex flex-wrap gap-1.5 mt-auto">
                   {project.tags.slice(0, 3).map((tag) => (

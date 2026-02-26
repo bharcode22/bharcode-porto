@@ -17,7 +17,7 @@ const statusColors = {
   'In Progress': 'bg-yellow-500/15 text-yellow-400',
 };
 
-const ProjectCard = ({ project, detail }) => {
+const ProjectCard = ({ project, detail, lang, statusLabel }) => {
   const catColor = categoryColors[project.category] ?? 'bg-white/10 text-white/60 border-white/15';
   const statColor = statusColors[project.status] ?? 'bg-white/10 text-white/60';
 
@@ -45,7 +45,7 @@ const ProjectCard = ({ project, detail }) => {
 
         {/* Status badge */}
         <span className={`absolute top-3 right-3 text-xs font-medium px-2.5 py-1 rounded-full ${statColor}`}>
-          {project.status}
+          {statusLabel[project.status] ?? project.status}
         </span>
       </div>
 
@@ -64,7 +64,7 @@ const ProjectCard = ({ project, detail }) => {
           <h3 className="text-white font-semibold text-lg leading-snug mb-1">
             {project.title}
           </h3>
-          <p className="text-white/50 text-sm line-clamp-2">{project.shortDesc}</p>
+          <p className="text-white/50 text-sm line-clamp-2">{project.shortDesc[lang]}</p>
         </div>
 
         {/* Tags */}
@@ -88,18 +88,20 @@ const ProjectCard = ({ project, detail }) => {
         <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/8">
           <div className="flex gap-3">
             {project.github &&
-              Object.entries(project.github).map(([key, url]) => (
-                <a
-                  key={key}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/40 hover:text-white transition-colors"
-                  title={key === 'repo' ? 'GitHub' : `GitHub ${key.charAt(0).toUpperCase() + key.slice(1)}`}
-                >
-                  <Github className="h-4 w-4" />
-                </a>
-              ))}
+              Object.entries(project.github).map(([key, url]) =>
+                url ? (
+                  <a
+                    key={key}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/40 hover:text-white transition-colors"
+                    title={key === 'repo' ? 'GitHub' : `GitHub ${key.charAt(0).toUpperCase() + key.slice(1)}`}
+                  >
+                    <Github className="h-4 w-4" />
+                  </a>
+                ) : null
+              )}
             {project.demo && (
               <a
                 href={project.demo}
@@ -127,7 +129,7 @@ const ProjectCard = ({ project, detail }) => {
 };
 
 const Projects = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const categories = ['All', ...new Set(projects.map((p) => p.category))];
   const [active, setActive] = useState('All');
 
@@ -171,7 +173,13 @@ const Projects = () => {
         {filtered.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((project) => (
-              <ProjectCard key={project.id} project={project} detail={t.projects.detail} />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                detail={t.projects.detail}
+                lang={lang}
+                statusLabel={t.projects.status}
+              />
             ))}
           </div>
         ) : (

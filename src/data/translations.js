@@ -61,6 +61,10 @@ const translations = {
       empty: 'Belum ada proyek di kategori ini.',
       detail: 'Detail',
       all: 'Semua',
+      status: {
+        Completed: 'Selesai',
+        'In Progress': 'Dalam Pengerjaan',
+      },
     },
     projectDetail: {
       back: 'Kembali ke Projects',
@@ -72,19 +76,32 @@ const translations = {
       linksLabel: 'Links',
       noLinks: 'Tidak ada link tersedia',
       otherProjects: 'Proyek Lainnya',
+      sourceCode: 'Source Code',
+      liveDemo: 'Live Demo',
+      private: 'Privat',
     },
     timeline: [
       {
-        year: '2023 – Sekarang',
-        title: 'Belajar Web Development',
-        desc: 'Mulai mendalami pengembangan web secara serius — dari HTML dasar hingga framework modern seperti React dan Laravel.',
+        year: '2024 - Sekarang',
+        title: 'Bekerja sebagai Backend Software Engineer',
+        desc: 'Berkarier di perusahaan Internet of Things (IoT) sebagai Backend Software Engineer, bertanggung jawab dalam pengembangan, pemeliharaan, dan optimalisasi sistem backend untuk mendukung solusi IoT yang andal dan skalabel.',
       },
       {
-        year: '2022',
-        title: 'Kuliah',
-        desc: 'Memulai perjalanan di dunia teknologi melalui bangku kuliah, belajar dasar-dasar pemrograman dan logika komputasi.',
+        year: '2024',
+        title: 'Skripsi',
+        desc: 'Menyusun skripsi dengan topik Machine Learning yang berfokus pada pengembangan model untuk mendeteksi penyakit pada tanaman tomat, sebagai penerapan kecerdasan buatan di bidang pertanian.',
       },
-    ],
+      {
+        year: '2023',
+        title: 'Bangkit Academy',
+        desc: 'Mengikuti program Bangkit Academy dengan fokus pada Cloud Computing, mempelajari perancangan dan pengelolaan infrastruktur cloud menggunakan Google Cloud Platform (GCP).',
+      },
+      {
+        year: '2020',
+        title: 'Perkuliahan',
+        desc: 'Memulai perjalanan di dunia teknologi melalui pendidikan formal dengan mengambil program studi S1 Sistem Informasi, mempelajari dasar-dasar pemrograman, basis data, serta logika dan konsep komputasi.',
+      },
+    ]
   },
 
   en: {
@@ -149,6 +166,10 @@ const translations = {
       empty: 'No projects in this category yet.',
       detail: 'Detail',
       all: 'All',
+      status: {
+        Completed: 'Completed',
+        'In Progress': 'In Progress',
+      },
     },
     projectDetail: {
       back: 'Back to Projects',
@@ -160,19 +181,32 @@ const translations = {
       linksLabel: 'Links',
       noLinks: 'No links available',
       otherProjects: 'Other Projects',
+      sourceCode: 'Source Code',
+      liveDemo: 'Live Demo',
+      private: 'Private',
     },
     timeline: [
       {
-        year: '2023 – Present',
-        title: 'Learning Web Development',
-        desc: 'Seriously diving into web development — from basic HTML to modern frameworks like React and Laravel.',
+        year: '2024 - Present',
+        title: 'Working as a Backend Software Engineer',
+        desc: 'Working at an Internet of Things (IoT) company as a Backend Software Engineer, responsible for developing, maintaining, and optimizing backend systems to support reliable and scalable IoT solutions.',
       },
       {
-        year: '2022',
-        title: 'College',
-        desc: 'Started the journey in the world of technology through college, learning the basics of programming and computational logic.',
+        year: '2024',
+        title: 'Undergraduate Thesis',
+        desc: 'Completed an undergraduate thesis focusing on Machine Learning, aimed at developing a model to detect diseases in tomato plants as an application of artificial intelligence in agriculture.',
       },
-    ],
+      {
+        year: '2023',
+        title: 'Bangkit Academy',
+        desc: 'Participated in the Bangkit Academy program with a focus on Cloud Computing, learning how to design and manage cloud infrastructure using Google Cloud Platform (GCP).',
+      },
+      {
+        year: '2020',
+        title: 'University Studies',
+        desc: 'Started a journey in the technology field through formal education by pursuing a Bachelor’s degree in Information Systems, learning the fundamentals of programming, databases, and computational logic.',
+      },
+    ]
   },
 };
 

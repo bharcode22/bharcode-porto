@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { ArrowLeft, Github, ExternalLink, CheckCircle, Calendar, Tag } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, CheckCircle, Calendar, Tag, Lock } from 'lucide-react';
 import Container from '../components/layout/Container';
 import projects from '../data/projects';
 import { useLanguage } from '../context/LanguageContext';
@@ -12,7 +12,7 @@ const statusColors = {
 
 const ProjectDetail = () => {
   const { id } = useParams();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const project = projects.find((p) => p.id === id);
 
   if (!project) {
@@ -95,16 +95,16 @@ const ProjectDetail = () => {
                 {project.title}
               </h1>
               <p className="text-white/60 text-base leading-relaxed">
-                {project.longDesc}
+                {project.longDesc[lang]}
               </p>
             </div>
 
             {/* Features */}
-            {project.features?.length > 0 && (
+            {project.features?.[lang]?.length > 0 && (
               <div className="glass-card p-6">
                 <h2 className="text-white font-semibold text-lg mb-4">{t.projectDetail.featuresTitle}</h2>
                 <ul className="space-y-3">
-                  {project.features.map((feat, i) => (
+                  {project.features[lang].map((feat, i) => (
                     <li key={i} className="flex items-start gap-3 text-white/60 text-sm">
                       <CheckCircle className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
                       {feat}
@@ -123,7 +123,7 @@ const ProjectDetail = () => {
               <div>
                 <p className="text-xs text-white/30 uppercase tracking-wider mb-2">{t.projectDetail.statusLabel}</p>
                 <span className={`text-xs font-medium px-3 py-1 rounded-full border ${statColor}`}>
-                  {project.status}
+                  {t.projects.status[project.status] ?? project.status}
                 </span>
               </div>
 
@@ -164,20 +164,35 @@ const ProjectDetail = () => {
               <p className="text-xs text-white/30 uppercase tracking-wider mb-4">{t.projectDetail.linksLabel}</p>
 
               {project.github &&
-                Object.entries(project.github).map(([key, url]) => (
-                  <a
-                    key={key}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="glass-btn-secondary flex items-center justify-center gap-2 w-full"
-                  >
-                    <Github className="h-4 w-4" />
-                    {key === 'repo'
-                      ? 'Source Code'
-                      : `${key.charAt(0).toUpperCase() + key.slice(1)} Repo`}
-                  </a>
-                ))}
+                Object.entries(project.github).map(([key, url]) =>
+                  url ? (
+                    <a
+                      key={key}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="glass-btn-secondary flex items-center justify-center gap-2 w-full"
+                    >
+                      <Github className="h-4 w-4" />
+                      {key === 'repo'
+                        ? t.projectDetail.sourceCode
+                        : `${key.charAt(0).toUpperCase() + key.slice(1)} Repo`}
+                    </a>
+                  ) : (
+                    <div
+                      key={key}
+                      className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg border border-white/8 text-white/25 text-sm cursor-default select-none"
+                    >
+                      <Lock className="h-4 w-4" />
+                      {key === 'repo'
+                        ? t.projectDetail.sourceCode
+                        : `${key.charAt(0).toUpperCase() + key.slice(1)} Repo`}
+                      <span className="text-xs bg-white/8 px-1.5 py-0.5 rounded ml-auto">
+                        {t.projectDetail.private}
+                      </span>
+                    </div>
+                  )
+                )}
 
               {project.demo && (
                 <a
@@ -187,7 +202,7 @@ const ProjectDetail = () => {
                   className="glass-btn-primary flex items-center justify-center gap-2 w-full"
                 >
                   <ExternalLink className="h-4 w-4" />
-                  Live Demo
+                  {t.projectDetail.liveDemo}
                 </a>
               )}
 
