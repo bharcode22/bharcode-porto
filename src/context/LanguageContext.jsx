@@ -4,7 +4,7 @@ import translations from '../data/translations';
 const LanguageContext = createContext(null);
 
 export const LanguageProvider = ({ children }) => {
-  const [lang, setLang] = useState('id');
+  const [lang, setLang] = useState('en');
   const toggleLang = () => setLang((l) => (l === 'id' ? 'en' : 'id'));
   const t = translations[lang];
 
