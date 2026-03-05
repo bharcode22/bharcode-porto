@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Github, Gitlab, Instagram, Mail } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Container from '../components/layout/Container';
 import heroImg from '../assets/images/hero/hero.JPG';
 import projects from '../data/projects';
@@ -94,6 +94,8 @@ const Home = () => {
                 <img
                   src={heroImg}
                   alt="Bharatayasa"
+                  data-aos="fade-up" 
+                  data-aos-delay="200"
                   className="relative z-10 w-full h-full object-cover rounded-full border border-white/10"
                 />
               </div>
@@ -113,6 +115,8 @@ const Home = () => {
               <span
                 key={tech}
                 className="text-sm px-4 py-1.5 rounded-full bg-white/5 text-white/50 border border-white/8 hover:text-white/80 hover:bg-white/10 transition-colors"
+                data-aos="fade-up" 
+                data-aos-delay="200"
               >
                 {tech}
               </span>
@@ -140,7 +144,7 @@ const Home = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" data-aos="fade-up" data-aos-delay="200">
             {featured.map((project) => (
               <Link
                 key={project.id}
@@ -191,7 +195,7 @@ const Home = () => {
       </section>
 
       {/* ─── CTA ─── */}
-      <section className="py-20 border-t border-white/5">
+      <section className="py-20 border-t border-white/5" data-aos="fade-up" data-aos-delay="200">
         <Container>
           <div className="glass-card p-10 md:p-16 text-center max-w-2xl mx-auto">
             <h2 className="text-3xl font-bold text-white mb-4">

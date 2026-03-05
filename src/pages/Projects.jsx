@@ -13,7 +13,7 @@ const categoryColors = {
 };
 
 const statusColors = {
-  Completed:   'bg-emerald-500/15 text-emerald-400',
+  Completed: 'bg-emerald-500/15 text-emerald-400',
   'In Progress': 'bg-yellow-500/15 text-yellow-400',
 };
 
@@ -22,7 +22,7 @@ const ProjectCard = ({ project, detail, lang, statusLabel }) => {
   const statColor = statusColors[project.status] ?? 'bg-white/10 text-white/60';
 
   return (
-    <div className="glass-card flex flex-col h-full overflow-hidden group">
+    <div className="glass-card flex flex-col h-full overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
       {/* Thumbnail */}
       <div className="relative h-44 overflow-hidden rounded-t-2xl">
         {project.image?.length > 0 ? (

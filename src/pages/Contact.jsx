@@ -34,14 +34,13 @@ const Contact = () => {
     setTimeout(() => setSent(false), 4000);
   };
 
-  const inputClass =
-    'w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder-white/25 focus:outline-none focus:border-white/30 focus:bg-white/8 transition-all resize-none';
+  const inputClass = 'w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder-white/25 focus:outline-none focus:border-white/30 focus:bg-white/8 transition-all resize-none';
 
   return (
     <section className="py-20">
       <Container>
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-12" data-aos="fade-up" data-aos-delay="100">
           <p className="text-white/40 text-sm font-medium tracking-widest uppercase mb-3">
             {t.contact.label}
           </p>
@@ -55,7 +54,7 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* ── Form ── */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3" data-aos="fade-up" data-aos-delay="300">
             <form onSubmit={handleSubmit} className="glass-card p-7 space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
@@ -122,7 +121,7 @@ const Contact = () => {
           {/* ── Info Sidebar ── */}
           <div className="lg:col-span-2 space-y-5">
             {/* Contact Info */}
-            <div className="glass-card p-6 space-y-5">
+            <div className="glass-card p-6 space-y-5" data-aos="fade-up" data-aos-delay="200">
               <h3 className="text-white font-semibold">{t.contact.contactInfoTitle}</h3>
               {contactInfo.map(({ icon: Icon, label, value, href }) => (
                 <div key={label} className="flex items-start gap-3">
@@ -149,7 +148,7 @@ const Contact = () => {
             </div>
 
             {/* Social Media */}
-            <div className="glass-card p-6 space-y-4">
+            <div className="glass-card p-6 space-y-4" data-aos="fade-up" data-aos-delay="300">
               <h3 className="text-white font-semibold">{t.contact.socialTitle}</h3>
               {socials.map(({ icon: Icon, href, label, username }) => (
                 <a

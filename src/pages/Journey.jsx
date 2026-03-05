@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import { MapPin, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Container from '../components/layout/Container';
-import aboutImg from '../assets/images/hero/backside.jpg';
 import skills from '../data/skills';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -13,7 +12,7 @@ const Journey = () => {
       {/* ─── Timeline ─── */}
       <section className="py-10 sm:py-16 border-t border-white/5">
         <Container>
-          <div className="mb-8 sm:mb-10 text-center">
+          <div className="mb-8 sm:mb-10 text-center" data-aos="fade-up" data-aos-delay="100">
             <p className="text-white/40 text-xs font-medium tracking-widest uppercase mb-2">
               {t.about.journeyLabel}
             </p>
@@ -22,7 +21,7 @@ const Journey = () => {
 
           <div className="max-w-2xl mx-auto space-y-3 sm:space-y-4">
             {t.timeline.map((item, i) => (
-              <div key={i} className="glass-card p-4 sm:p-6 flex gap-4 sm:gap-5">
+              <div key={i} className="glass-card p-4 sm:p-6 flex gap-4 sm:gap-5" data-aos="fade-up" data-aos-delay="200">
                 <div className="shrink-0 flex flex-col items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full bg-white/40 mt-1" />
                   {i < t.timeline.length - 1 && (
@@ -54,7 +53,7 @@ const Journey = () => {
 
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
             {skills.map(({ category, items }) => (
-              <div key={category} className="glass-card p-4 sm:p-5">
+              <div key={category} className="glass-card p-4 sm:p-5" data-aos="fade-up" data-aos-delay="200">
                 <h3 className="text-white/50 text-xs font-semibold tracking-widest uppercase mb-3 sm:mb-4">
                   {category}
                 </h3>
@@ -75,7 +74,7 @@ const Journey = () => {
       {/* ─── CTA ─── */}
       <section className="py-10 sm:py-16 border-t border-white/5">
         <Container>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 glass-card p-5 sm:p-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 glass-card p-5 sm:p-8" data-aos="fade-up" data-aos-delay="200">
             <div className="text-center sm:text-left">
               <h3 className="text-white font-bold text-lg sm:text-xl mb-1">{t.about.ctaTitle}</h3>
               <p className="text-white/45 text-sm">{t.about.ctaDesc}</p>
